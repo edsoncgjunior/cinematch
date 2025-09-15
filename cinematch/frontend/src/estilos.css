@@ -1,0 +1,30 @@
+:root{
+  --bg:#0f1223; --panel:#191f34; --edge:#242c45; --text:#e6e7eb; --muted:#9aa3b2; --brand:#6c5ce7; --brand-strong:#4c3fe1; --star:#f7c948;
+}
+*{box-sizing:border-box} html,body,#root{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto}
+.conteudo{max-width:1200px;margin:0 auto;padding:28px 24px 40px}
+.cabecalho{display:flex;align-items:center;gap:10px;padding:14px 24px;border-bottom:1px solid var(--edge);background:#0e1222;position:sticky;top:0;z-index:10}
+.logo{width:22px;height:22px;background:var(--brand);border-radius:6px}.titulo{font-weight:600}
+.bloco{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:18px}
+.filtros-wrapper{margin-top:12px}
+.filtros{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.input,.select{background:#0d142a;border:1px solid var(--edge);color:var(--text);padding:12px;border-radius:10px}
+.secao-titulo{margin:18px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+.card{background:#0f162b;border:1px solid #1f2945;border-radius:14px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35)}
+.poster{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:#0b1120}
+.card-corpo{padding:12px}
+.titulo-filme{font-size:14px;font-weight:600;line-height:1.3;margin:8px 0 4px;min-height:34px}
+.meta{font-size:12px;color:var(--muted)}
+.estrelas{display:flex;gap:4px;margin-top:8px}.estrela{cursor:pointer;font-size:18px;color:#4b5563}.estrela.ativa{color:var(--star)}
+.paginacao{display:flex;gap:6px;justify-content:center;margin-top:16px}
+.paginacao button{background:#0d1222;border:1px solid var(--edge);color:var(--text);padding:8px 10px;border-radius:8px;cursor:pointer}
+.paginacao button.ativo{border-color:var(--brand)}
+.acoes-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.aviso{color:var(--muted);font-size:14px}
+.botao{background:#111827;border:1px solid var(--edge);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer}
+.botao.primario{background:var(--brand);border-color:var(--brand-strong)}
+.botao:disabled{opacity:.55;cursor:not-allowed}
+.recs-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.voltar-bar{display:flex;justify-content:center;margin-top:24px}
