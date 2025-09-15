@@ -1,0 +1,45 @@
+name: CI
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build images
+        run: docker compose build --no-cache
+
+      - name: Unit tests (backend)
+        run: |
+          docker compose run --rm backend npm ci
+          docker compose run --rm backend npm test
+
+      - name: Start stack
+        run: docker compose up -d db backend frontend
+
+      - name: Wait backend
+        run: |
+          for i in {1..30}; do
+            curl -fsS http://localhost:3000/api/health && exit 0
+            sleep 2
+          done
+          echo "Backend not healthy"; docker compose logs backend; exit 1
+
+      - name: Robot API
+        run: docker compose run --rm test_api
+
+      - name: Robot E2E
+        run: docker compose run --rm test_e2e robot tests/robot/e2e/cinematch_e2e.robot
+
+      - name: k6 smoke
+        run: docker compose run --rm test_perf
+
+      - name: Teardown
+        if: always()
+        run: docker compose down -v
