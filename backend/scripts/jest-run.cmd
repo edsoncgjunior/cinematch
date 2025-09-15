@@ -1,0 +1,2 @@
+@echo off
+node --experimental-vm-modules node_modules\jest\bin\jest.js --config jest.config.mjs --runInBand %*
