@@ -1,5 +1,0 @@
-export const API_BASE = '/api'
-export function getUsuarioId(){const k='cm_uid';let id=localStorage.getItem(k);if(!id){id='u-'+Math.random().toString(36).slice(2,10);localStorage.setItem(k,id)}return id}
-export async function apiGet(path, params={}){const url=new URL(API_BASE+path, window.location.origin);Object.entries(params).forEach(([k,v])=>v!==undefined&&v!==''&&url.searchParams.set(k,v));const r=await fetch(url.toString());if(!r.ok) throw new Error(`GET ${url} -> ${r.status}`);return r.json()}
-export async function apiPost(path, body={}){const r=await fetch(API_BASE+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok) throw new Error(`POST ${path} -> ${r.status}`);return r.json()}
-export async function apiDelete(path, params={}){const url=new URL(API_BASE+path, window.location.origin);Object.entries(params).forEach(([k,v])=>v!==undefined&&v!==''&&url.searchParams.set(k,v));const r=await fetch(url.toString(),{method:'DELETE'});if(!r.ok) throw new Error(`DELETE ${url} -> ${r.status}`);return r.json()}
